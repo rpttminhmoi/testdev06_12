@@ -1,5 +1,90 @@
-<html>
-      <body>
-            <p>Hello World!!!</p>
-      </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu with Color Transition</title>
+    <style>
+        /* Đặt các thuộc tính cơ bản cho menu và các section */
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px; /* Thêm khoảng cách dưới menu */
+        }
+
+        .section {
+            padding: 15px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.5s, color 0.5s;
+            /* Hiệu ứng chuyển tiếp cho màu nền và màu chữ */
+        }
+
+        .section.active {
+            background-color: white;
+            color: black;
+        }
+
+        /* Định dạng h2 và p khi được hiển thị */
+        h2, p {
+            text-align: center;
+            transition: color 0.5s, background-color 0.5s;
+        }
+
+        h2.active, p.active {
+            color: black;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        <li class="section">Section 1</li>
+        <li class="section">Section 2</li>
+        <li class="section">Section 3</li>
+    </ul>
+
+    <h2>Content Area</h2>
+    <p>This is the content area that changes based on the selected section.</p>
+
+    <script>
+        // Chọn tất cả các phần (section)
+        const sections = document.querySelectorAll('.section');
+        const heading = document.querySelector('h2');
+        const paragraph = document.querySelector('p');
+
+        // Hàm để xóa class 'active' khỏi tất cả các phần
+        function removeActiveClasses() {
+            sections.forEach(section => section.classList.remove('active'));
+        }
+
+        // Hàm để xóa class 'active' khỏi h2 và p
+        function removeContentActiveClasses() {
+            heading.classList.remove('active');
+            paragraph.classList.remove('active');
+        }
+
+        // Thêm sự kiện click vào từng phần
+        sections.forEach(section => {
+            section.addEventListener('click', () => {
+                // Xóa class 'active' khỏi tất cả các phần
+                removeActiveClasses();
+
+                // Xóa class 'active' khỏi h2 và p
+                removeContentActiveClasses();
+
+                // Thêm class 'active' vào phần được nhấp
+                section.classList.add('active');
+
+                // Thêm class 'active' vào h2 và p để hiển thị nội dung phù hợp
+                heading.classList.add('active');
+                paragraph.classList.add('active');
+            });
+        });
+    </script>
+</body>
 </html>
